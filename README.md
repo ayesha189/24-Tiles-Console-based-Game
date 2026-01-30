@@ -1,6 +1,6 @@
 # 24-Tiles – Console-Based Sliding Puzzle Game
 
-<div align="center">
+<div align="left">
 
 ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
@@ -87,8 +87,8 @@ This project was developed as a university C++ programming assignment.
 
 3. **Clone the Repository**
    ```bash
-   git clone https://github.com/ayesha189/CandyCrush-ConsoleGame
-   cd Candy-Crush-Console-Game
+  git clone https://github.com/ayesha189/24-Tile-ConsoleGame.git
+  cd 24-Tile-ConsoleGame
    ```
 
 4. **Open Folder in VS Code**
@@ -101,15 +101,16 @@ This project was developed as a university C++ programming assignment.
    - Open integrated terminal (Ctrl + `)
    - Compile:
      ```bash
-     g++ "candy crush.cpp" -o candy
+    g++ tilegame.cpp -o tilegame.exe
+
      ```
    - Run:
      ```bash
-     candy.exe
+     tilegame.exe
      ```
 
    **Method B: Using Code Runner**
-   - Open `candy crush.cpp`
+   - Open `tilegame.cpp`
    - Right-click in editor → **"Run Code"**
    - Or press **Ctrl + Alt + N**
 
@@ -122,153 +123,117 @@ This project was developed as a university C++ programming assignment.
 ---
 
 ### 📝 Important Notes
-- Ensure `candycrush.txt` is in the same directory as your executable
+- Ensure `tilegame.txt` is in the same directory as your executable
 - The game requires a Windows environment due to platform-specific libraries
 - For the best experience, run in a full-screen console window
 
 ---
 
-## 🎯 How to Play
+## 🎮 How to Play
 
 ### Game Controls
 1. **Start the Game**
-   - Choose difficulty: Easy (8x8) or Hard (10x10)
-   
+   - The board shuffles automatically
+   - Empty space is shown as **0**
+
 2. **Making Moves**
-   - Enter row and column of the first candy (0-indexed)
-   - Enter row and column of the adjacent candy to swap
-   - Only adjacent swaps (horizontal/vertical) are allowed
-   
-3. **Scoring**
-   - Match 3 candies: Base points
-   - Match 4+ candies: Bonus points
-   - Complete moves before time runs out!
+   - Enter row and column of the **tile** you want to move (0-indexed)
+   - Enter row and column of the **empty space** (or the tile you want to swap with)
+   - Only **adjacent** (horizontal/vertical) moves are allowed
 
-### Example Move
-```
-Enter first candy position:
-Row: 2
-Column: 3
+3. **Winning**
+   - Arrange tiles in this exact order:
+   -1  2  3  4  5  6
+   -7  8  9 10 11 12
+   -13 14 15 16 17 18
+   -19 20 21 22 23 24
+- Game ends when layout is correct → shows moves used & time taken
 
-Enter second candy position (adjacent):
-Row: 2
-Column: 4
-
-✅ Valid swap! Checking for matches...
-```
-
----
 
 ## 📁 Project Structure
 
-```
-Candy-Crush-Console-Game/
+24-Tiles-ConsoleGame/
 │
-├── candy crush.cpp         # Main game logic and implementation
-├── candycrush.txt          # Score tracking and game data storage
-└── README.md               # Project documentation (this file)
-```
+├── tilegame.cpp       # Main game logic and implementation
+├── tilegame.txt       # High-score storage (auto-created/updated)
+└── README.md          # This documentation file
+
 
 ### Code Organization
-- **candy crush.cpp**: Complete game implementation including:
-  - Match detection algorithms
-  - Board management and rendering
-  - Swap validation logic
-  - ANSI color codes for display
-  - User input handling
-  - Timer system
-- **candycrush.txt**: Persistent data storage for:
-  - High scores tracking
-  - Game statistics
-  - Player records
+- **tilegame.cpp**: Complete game including:
+  - 2D array board management
+  - Move validation & swapping logic
+  - Win condition checking
+  - Timer using `<ctime>`
+  - File I/O for persistent scores
+  - Console display formatting
 
----
+- **tilegame.txt**: Stores best performances (moves + time)
 
 ## 🛠️ Technologies Used
-
 <p align="left">
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" width="50" height="50" alt="C++"/>
   <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" width="50" height="50" alt="Windows"/>
 </p>
 
 - **Language**: C++ (Standard Library)
-- **Graphics**: ANSI Escape Codes for colored output
-- **I/O**: `<iostream>`, `<fstream>` for console and file operations
-- **Platform**: Windows-specific headers (`<conio.h>`, `<windows.h>`)
-- **Data Structures**: 2D arrays for board representation
-
----
+- **Graphics**: Console text output (optional ANSI colors if supported)
+- **I/O**: `<iostream>`, `<fstream>`
+- **Platform**: Windows-specific (`<conio.h>`, `<windows.h>`)
+- **Data Structures**: 2D arrays (`int board[4][6]`)
 
 ## 🎓 Learning Outcomes
-
 This project demonstrates proficiency in:
 
-✅ **C++ Fundamentals**
-- Object-oriented programming concepts
-- 2D array manipulation and algorithms
-- Standard Template Library (STL) usage
+✅ **C++ Fundamentals**  
+- 2D array manipulation  
+- Control structures & functions  
+- STL usage (if applied)
 
-✅ **Game Development**
-- Game loop design and implementation
-- User input handling and validation
-- Score tracking and leaderboard systems
+✅ **Game Development**  
+- Game loop & real-time input handling  
+- State tracking (board, moves, time)  
+- Win detection logic
 
-✅ **Software Engineering**
-- File I/O for persistent data storage
-- Modular code structure and functions
-- Console UI/UX design principles
+✅ **Software Engineering**  
+- File I/O for persistent high scores  
+- Input validation & error messages  
+- Clean console UI/UX
 
-✅ **Problem Solving**
-- Match-3 algorithm implementation
-- Grid-based game logic
-- Timer and event management
-
----
+✅ **Problem Solving**  
+- Grid-based algorithms  
+- Adjacency & movement constraints  
+- Puzzle solvability awareness
 
 ## 🔮 Future Enhancements
-
 ### Planned Features
-- [ ] **Cross-platform support** (Linux/Mac compatibility)
-- [ ] **Gravity system** - candies fall down after matches
-- [ ] **Special candies** - striped, wrapped, color bombs
-- [ ] **Cascade scoring** - chain reaction bonuses
-- [ ] **Power-ups** - shuffle, hint, extra time
-- [ ] **Sound effects** - match sounds, background music
-- [ ] **Animations** - smoother transitions
-- [ ] **Enhanced leaderboard** - player names, dates, statistics
-- [ ] **Save/Load game** - resume gameplay
-- [ ] **Combo multipliers** - consecutive match bonuses
-
+- [ ] Cross-platform support (Linux/Mac using ncurses)
+- [ ] Undo last move
+- [ ] Hint system or next-best-move suggestion
+- [ ] Solvability checker (parity-based)
+- [ ] Multiple sizes (3×3, 5×5, etc.)
+- [ ] Move history replay
+- [ ] Enhanced visuals (colors, borders)
 
 ### Technical Improvements
-- [ ] Refactor code into classes (Board, Game, UI, ScoreManager)
-- [ ] Add unit tests for core game logic
-- [ ] Implement design patterns (Singleton, Factory)
-- [ ] Optimize performance for larger boards
-- [ ] Add configuration file for game settings
-
----
-
-
-
-
----
+- [ ] Refactor into classes (`Board`, `Game`, `ScoreManager`)
+- [ ] Add unit tests for move validation & win check
+- [ ] Implement design patterns (e.g. Singleton for game state)
+- [ ] Configuration file for grid size/timer
+- [ ] Better shuffling algorithm (guarantee solvability)
 
 ## 👥 Team
-
 <table>
   <tr>
     <td align="center">
-      <img src="" width="100px;" alt="Ayesha Rauf"/>
       <br />
-      <sub><b>Nimrah</b></sub>
+      <sub><b>Ayesha Rauf</b></sub>
       <br />
       <sub>23F-0807</sub>
       <br />
-      <sub>Core Logic & UI</sub>
+      <sub>Core Logic & Implementation</sub>
     </td>
     <td align="center">
-      <img src="" width="100px;" alt="Aqsa Ishaq"/>
       <br />
       <sub><b>Aqsa Ishaq</b></sub>
       <br />
@@ -279,39 +244,19 @@ This project demonstrates proficiency in:
   </tr>
 </table>
 
----
-
 ## 📝 License
-
-This project is created for educational purposes as part of a university course assignment.
-
----
+Educational university course project — free to use and modify for learning purposes.
 
 ## 📧 Contact
-
-**Ayesha rauf** - [@NIMRAH-S](https://github.com/NIMRAH-S)
-
-**Project Link**: [https://github.com/NIMRAH-S/Candy-Crush-Console-Game](https://github.com/NIMRAH-S/Candy-Crush-Console-Game)
-
----
+**Ayesha Rauf** — [@ayesha189](https://github.com/ayesha189)  
+**Project Link**: [https://github.com/ayesha189/24-Tile-ConsoleGame](https://github.com/ayesha189/24-Tile-ConsoleGame)
 
 ## 🙏 Acknowledgments
-
-- Inspired by the original Candy Crush Saga game
-- Thanks to our instructors for project guidance
-- C++ community for documentation and resources
-- ANSI color code references for console styling
-
----
+- Inspired by classic sliding tile puzzles (15-puzzle family)
+- Thanks to instructors for guidance
+- C++ community resources & tutorials
 
 ## ⭐ Show Your Support
+If this project helped you learn or you enjoyed it — please consider giving the repo a ⭐!
 
-If you found this project helpful or interesting, please consider giving it a ⭐!
-
----
-
-<div align="center">
-  <p>Made with ❤️ and C++</p>
-  <p>© 2024 Candy Crush Console Game Team</p>
-</div>
-
+Happy sliding! 🧩
