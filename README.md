@@ -244,8 +244,11 @@ This project demonstrates proficiency in:
   </tr>
 </table>
 ---
+
 ## 📝 License
-Educational university course project — free to use and modify for learning purposes.
+
+Educational university project — free to use and modify for learning purposes.
+
 ---
 
 ## 📧 Contact
@@ -262,7 +265,6 @@ Educational university course project — free to use and modify for learning pu
 
 ---
 
-## ⭐ Show Your Support
+## ⭐ Support
 
--If you found this project helpful or interesting, please consider giving it a ⭐!
----
+If you found this project useful or inspiring, please consider giving it a ⭐ on GitHub.
