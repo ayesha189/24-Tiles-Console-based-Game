@@ -1,5 +1,4 @@
-# 24-Tiles-Console-based-Game
-# 🟩 24-Tile Console Game
+# 🟩 24-Tiles-Console-based-Game
 
 <div align="left">
   <h3>A Classic 2D Array-Based Tile Puzzle Game Built in C++</h3>
