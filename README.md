@@ -64,12 +64,12 @@ This project was developed as a university C++ programming assignment.
 4. **Add the Game File**
    - In Solution Explorer, right-click on **"Source Files"**
    - Select **Add → Existing Item**
-   - Browse and select `candy crush.cpp`
+   - Browse and select `24-Tile game.cpp`
 
 5. **Build and Run**
    - Press **Ctrl + F5** (or click "Local Windows Debugger")
    - The game will launch in a console window
-   - Make sure `candycrush.txt` is in the same directory as your executable
+   - Make sure `24-Tile game.txt` is in the same directory as your executable
 
 ---
 
@@ -87,8 +87,8 @@ This project was developed as a university C++ programming assignment.
 
 3. **Clone the Repository**
    ```bash
-   git clone https://github.com/ayesha189/CandyCrush-ConsoleGame
-   cd Candy-Crush-Console-Game
+   git clone https://github.com/ayesha189/24-Tiles-Console-based-Game
+   24-Tiles-Console-based-Game
    ```
 
 4. **Open Folder in VS Code**
@@ -101,15 +101,15 @@ This project was developed as a university C++ programming assignment.
    - Open integrated terminal (Ctrl + `)
    - Compile:
      ```bash
-     g++ "candy crush.cpp" -o candy
+     g++ "24-Tile game.cpp" -o 24-Tile game
      ```
    - Run:
      ```bash
-     candy.exe
+     24-Tile game.exe
      ```
 
    **Method B: Using Code Runner**
-   - Open `candy crush.cpp`
+   - Open `24-Tile game.cpp`
    - Right-click in editor → **"Run Code"**
    - Or press **Ctrl + Alt + N**
 
@@ -122,7 +122,7 @@ This project was developed as a university C++ programming assignment.
 ---
 
 ### 📝 Important Notes
-- Ensure `candycrush.txt` is in the same directory as your executable
+- Ensure `24-Tile game.txt` is in the same directory as your executable
 - The game requires a Windows environment due to platform-specific libraries
 - For the best experience, run in a full-screen console window
 
@@ -134,7 +134,7 @@ This project was developed as a university C++ programming assignment.
 ### Game Controls
 1. **Start the Game**
    - The board shuffles automatically
-   - Empty space is shown as **0**
+   - Empty space is shown as **-1**
 
 2. **Making Moves**
    - Enter row and column of the **tile** you want to move (0-indexed)
@@ -151,16 +151,17 @@ This project was developed as a university C++ programming assignment.
 
 
 ## 📁 Project Structure
-
+```
 24-Tiles-ConsoleGame/
 │
-├── tilegame.cpp       # Main game logic and implementation
-├── tilegame.txt       # High-score storage (auto-created/updated)
-└── README.md          # This documentation file
+├── 24-Tile game.cpp       # Main game logic and implementation
+├── 24-Tile game.txt       # High-score storage (auto-created/updated)
+└── README.md              # This documentation file
 
-
+```
 ### Code Organization
-- **tilegame.cpp**: Complete game including:
+
+- **.cpp**: Complete game including:
   - 2D array board management
   - Move validation & swapping logic
   - Win condition checking
@@ -168,7 +169,8 @@ This project was developed as a university C++ programming assignment.
   - File I/O for persistent scores
   - Console display formatting
 
-- **tilegame.txt**: Stores best performances (moves + time)
+- **24-Tile game.txt**: Stores best performances (moves + time)
+---
 
 ## 🛠️ Technologies Used
 <p align="left">
@@ -181,6 +183,8 @@ This project was developed as a university C++ programming assignment.
 - **I/O**: `<iostream>`, `<fstream>`
 - **Platform**: Windows-specific (`<conio.h>`, `<windows.h>`)
 - **Data Structures**: 2D arrays (`int board[4][6]`)
+
+---
 
 ## 🎓 Learning Outcomes
 This project demonstrates proficiency in:
@@ -205,6 +209,8 @@ This project demonstrates proficiency in:
 - Adjacency & movement constraints  
 - Puzzle solvability awareness
 
+---
+
 ## 🔮 Future Enhancements
 ### Planned Features
 - [ ] Cross-platform support (Linux/Mac using ncurses)
@@ -222,27 +228,16 @@ This project demonstrates proficiency in:
 - [ ] Configuration file for grid size/timer
 - [ ] Better shuffling algorithm (guarantee solvability)
 
+---
 ## 👥 Team
-<table>
-  <tr>
-    <td align="center">
-      <br />
-      <sub><b>Ayesha Rauf</b></sub>
-      <br />
-      <sub>23F-0807</sub>
-      <br />
-      <sub>Core Logic & Implementation</sub>
-    </td>
-    <td align="center">
-      <br />
-      <sub><b>Aqsa Ishaq</b></sub>
-      <br />
-      <sub>23F-0839</sub>
-      <br />
-      <sub>Testing & Debugging</sub>
-    </td>
-  </tr>
-</table>
+
+<ul>
+  <li>Ayesha Rauf (23f-0807 )</li>
+  <li>Aqsa Ishaq  (23f-0839 )</li>
+</ul>
+
+
+
 ---
 
 ## 📝 License
