@@ -1,0 +1,382 @@
+#include<iostream>
+#include<ctime>
+#include<conio.h>  //for _getch() as it is special character (arrow keys)
+#include<windows.h> //for sleep mode function sleep("cls")
+#include<fstream>
+using namespace std;
+
+#define KEY_UP 72// define constants to use them to swap 
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+
+const int cols = 5;
+const int rows = 5;
+int moves_path_index = 0;
+int moves_list[4] = { -99, -99, -99, -99 };
+char moves_path[100] = { '/0' };
+
+void goalarr(int goal[rows][cols]) {// the goal to be reached 
+    int num = 1;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (i == rows - 1 && j == cols - 1) {
+                goal[i][j] = -1;
+            }
+            else {
+                goal[i][j] = num++;
+            }
+        }
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (i <= 1) {
+                cout << goal[i][j] << "   ";
+            }
+            else {
+                cout << goal[i][j] << "  ";
+            }
+        }
+        cout << endl;
+    }
+}
+
+void randomintialize(int arr[rows][cols]) {
+    bool presentNumbers[25] = { false }; // To keep track of numbers already present
+    int missingNumber = 1; // The first missing number to fill in the grid
+    srand(time(0));
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            // Check if current cell is the last cell
+            if (i == rows - 1 && j == cols - 1) {
+                arr[i][j] = -1; // Set the last cell to -1
+                continue; // Move to the next iteration
+            }
+            int randomNum;
+            do {
+                randomNum = rand() % 24 + 1; // Generate random number between 1 and 24
+            } while (presentNumbers[randomNum]); // Repeat until a non-duplicate number is found
+            arr[i][j] = randomNum; // Set the current cell to the random number
+            presentNumbers[randomNum] = true; // Mark the number as present
+        }
+    }
+}
+
+
+bool is_present(int arr[][cols], int size, int element) {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (arr[i][j] == element) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+void print_random_arr(int arr[rows][cols]) {//print random array
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << arr[i][j] << "         ";
+        }
+        cout << endl;
+    }
+}
+
+bool issolveable(int arr[rows][cols]) {// check the board for even so that it can be solved
+    bool solveable = false;
+    int count = 0;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (i < j && arr[i][j] != -1) {
+                count++;
+            }
+        }
+    }
+    if (count % 2 == 0) {
+        solveable = true;
+    }
+    return solveable;
+}
+
+bool is_goal(int goal[rows][cols], int arr[rows][cols]) {// used at last to check if array of user and goal array are equal
+    bool isgoal = true;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (goal[i][j] != arr[i][j]) {
+                isgoal = false;
+                break;
+            }
+        }
+        if (!isgoal) {
+            break;
+        }
+    }
+    return isgoal;
+}
+
+void move_down(int arr[rows][cols]) {// to wap the arrays elements to down 
+    int blankRow, blankCol;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (arr[i][j] == -1) {
+                blankRow = i;
+                blankCol = j;
+                break;
+            }
+        }
+    }
+
+    if (blankRow >= 0 && blankRow < 4) {
+        int temp = arr[blankRow][blankCol];
+        arr[blankRow][blankCol] = arr[blankRow + 1][blankCol];
+        arr[blankRow + 1][blankCol] = temp;
+    }
+}
+
+void move_up(int arr[rows][cols]) {// to swap the arrays elements to up 
+    int blankRow, blankCol;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (arr[i][j] == -1) {
+                blankRow = i;
+                blankCol = j;
+                break;
+            }
+        }
+    }
+
+    if (blankRow > 0) {
+        int temp = arr[blankRow][blankCol];
+        arr[blankRow][blankCol] = arr[blankRow - 1][blankCol];
+        arr[blankRow - 1][blankCol] = temp;
+    }
+}
+
+void move_right(int arr[rows][cols]) {
+    int blankRow, blankCol;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (arr[i][j] == -1) {
+                blankRow = i;
+                blankCol = j;
+                break;
+            }
+        }
+    }
+
+    if (blankCol >= 0 && blankCol < 4) {
+        int temp = arr[blankRow][blankCol];
+        arr[blankRow][blankCol] = arr[blankRow][blankCol + 1];
+        arr[blankRow][blankCol + 1] = temp;
+    }
+}
+
+void move_left(int arr[rows][cols]) {//to swap the array elements to left
+    int blankRow, blankCol;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (arr[i][j] == -1) {
+                blankRow = i;
+                blankCol = j;
+                break;
+            }
+        }
+    }
+
+    if (blankCol > 0 && blankCol < 5) {
+        int temp = arr[blankRow][blankCol];
+        arr[blankRow][blankCol] = arr[blankRow][blankCol - 1];
+        arr[blankRow][blankCol - 1] = temp;
+    }
+}
+
+void  display_board(int arr[rows][cols]) {// show the swapping of -1 wali tile
+    cout << "The array after you move is:" << endl;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << arr[i][j] << "         ";
+        }
+        cout << endl;
+    }
+}
+
+int* legal_moves(int init_state[rows][cols]) {
+    int r, c = 0;
+    // int *moves = new int[4];
+    for (int i = 0; i < 4; i++) {
+        moves_list[i] = -99;
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (init_state[i][j] == -1) {
+                r = i;
+                c = j;
+                break;
+            }
+        }
+    }
+    int index = 0;
+
+    if (r == rows - 1) {
+        moves_list[index] = int('U');
+        index++;
+    }
+    else if (r == 0) {
+        moves_list[index] = int('D');
+        index++;
+    }
+    else {
+        moves_list[index] = int('U');
+        moves_list[index + 1] = int('D');
+        index = 2;
+    }
+
+    if (c == cols - 1) {
+        moves_list[index] = int('L');
+        index++;
+    }
+    else if (c == 0) {
+        moves_list[index] = int('R');
+        index++;
+    }
+    else {
+        moves_list[index] = int('L');
+        moves_list[index + 1] = int('R');
+    }
+
+    return moves_list;
+}
+
+void print_moves(int* moves) {
+    for (int i = 0; i < 4 && moves[i] != -99; i++) {
+        cout << char(moves[i]) << " ";
+    }
+    cout << endl;
+}
+
+void print_path() {
+    //moves_path[moves_path_index]
+    ofstream fout("moves.txt");
+    if(fout.is_open()){
+        for (int i = 0; i < moves_path_index; i++) {
+            fout << moves_path[i];
+            if (i + 1 != moves_path_index) {
+                fout << " -> ";
+            }
+        }
+        fout << endl;
+    }
+    fout.close();
+}
+
+void make_move(int  arr[5][5], int move){
+    switch (move) {
+    case KEY_UP:
+        move_up(arr);
+        moves_path[moves_path_index] = 'U';
+        moves_path_index++;
+        break;
+    case KEY_DOWN:
+        move_down(arr);
+        moves_path[moves_path_index] = 'D';
+        moves_path_index++;
+        break;
+    case KEY_LEFT:
+        move_left(arr);
+        moves_path[moves_path_index] = 'L';
+        moves_path_index++;
+        break;
+    case KEY_RIGHT:
+        move_right(arr);
+        moves_path[moves_path_index] = 'R';
+        moves_path_index++;
+        break;
+    default:
+        cout << "Invalid move" << endl;
+
+        break;
+    }
+}
+
+
+
+int main() {
+
+    int arr[rows][cols];
+    int goal[rows][cols];
+
+    cout << "-------------------------------------------------------------------" << endl;
+    cout << "let's play the 24-puzzle game. " << endl;
+    cout << "you have total 100 moves to reach the goal" << endl;
+    cout << endl;
+
+    cout << "your goal array is:" << endl;
+    goalarr(goal);
+    cout << endl;
+
+    cout << "-------------------------------------------------------------------" << endl;
+    cout << " let's get started with the game" << endl;
+    cout << endl;
+    cout << "the array (randomly generated) is:" << endl;
+    randomintialize(arr);
+    print_random_arr(arr);
+
+
+    /* cout << "is the given puzzle solveable? " <<  endl;
+     if (issolveable(arr)) {
+         cout << "yes" << endl;
+     }
+     else {
+         cout << "no" << endl;
+     }*/
+
+
+
+    int count = 100;
+    int k = 1;
+    while (k <= 100) {
+        cout << "Allowed moves ";
+        print_moves(legal_moves(arr));
+        cout << "enter a move (use arrow keys):" << endl;
+        int move = _getch();
+
+        if (move == 0xE0) {//first byte of the corresponding key code sequence of key up,down,left and right so they have 0xE0 sequence  in common
+            move = _getch();
+
+            switch (move) {
+            case KEY_UP:
+            case KEY_DOWN:
+            case KEY_LEFT:
+            case KEY_RIGHT:
+                make_move(arr, move);
+                break;
+            default:
+                cout << "Invalid Move please try again!!" << endl;
+                k--;
+            }
+      
+
+            system("cls");
+
+            display_board(arr);// to show the change in array after each move
+        }
+        cout << "moves used out of(100):" << k << endl;
+        k++;
+    }
+
+    if (is_goal(goal, arr)) {
+        cout << "Congratulations! You won the puzzle game" << endl;
+
+    }
+    else {
+        cout << "you lost and out of moves" << endl;
+    }
+
+    print_path();
+    system("pause");
+    return 0;
+
+}
