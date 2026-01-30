@@ -243,13 +243,16 @@ This project demonstrates proficiency in:
     </td>
   </tr>
 </table>
-
+---
 ## 📝 License
 Educational university course project — free to use and modify for learning purposes.
+---
 
 ## 📧 Contact
 **Ayesha Rauf** — [@ayesha189](https://github.com/ayesha189)  
 **Project Link**: [https://github.com/ayesha189/24-Tile-ConsoleGame](https://github.com/ayesha189/24-Tile-ConsoleGame)
+
+---
 
 ## 🙏 Acknowledgments
 
@@ -261,6 +264,5 @@ Educational university course project — free to use and modify for learning pu
 
 ## ⭐ Show Your Support
 
-If you found this project helpful or interesting, please consider giving it a ⭐!
-Happy puzzling!
+-If you found this project helpful or interesting, please consider giving it a ⭐!
 ---
