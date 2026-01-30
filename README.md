@@ -87,8 +87,8 @@ This project was developed as a university C++ programming assignment.
 
 3. **Clone the Repository**
    ```bash
-  git clone https://github.com/ayesha189/24-Tile-ConsoleGame.git
-  cd 24-Tile-ConsoleGame
+   git clone https://github.com/ayesha189/CandyCrush-ConsoleGame
+   cd Candy-Crush-Console-Game
    ```
 
 4. **Open Folder in VS Code**
@@ -101,16 +101,15 @@ This project was developed as a university C++ programming assignment.
    - Open integrated terminal (Ctrl + `)
    - Compile:
      ```bash
-    g++ tilegame.cpp -o tilegame.exe
-
+     g++ "candy crush.cpp" -o candy
      ```
    - Run:
      ```bash
-     tilegame.exe
+     candy.exe
      ```
 
    **Method B: Using Code Runner**
-   - Open `tilegame.cpp`
+   - Open `candy crush.cpp`
    - Right-click in editor → **"Run Code"**
    - Or press **Ctrl + Alt + N**
 
@@ -123,11 +122,12 @@ This project was developed as a university C++ programming assignment.
 ---
 
 ### 📝 Important Notes
-- Ensure `tilegame.txt` is in the same directory as your executable
+- Ensure `candycrush.txt` is in the same directory as your executable
 - The game requires a Windows environment due to platform-specific libraries
 - For the best experience, run in a full-screen console window
 
 ---
+
 
 ## 🎮 How to Play
 
@@ -252,11 +252,15 @@ Educational university course project — free to use and modify for learning pu
 **Project Link**: [https://github.com/ayesha189/24-Tile-ConsoleGame](https://github.com/ayesha189/24-Tile-ConsoleGame)
 
 ## 🙏 Acknowledgments
+
 - Inspired by classic sliding tile puzzles (15-puzzle family)
 - Thanks to instructors for guidance
 - C++ community resources & tutorials
 
-## ⭐ Show Your Support
-If this project helped you learn or you enjoyed it — please consider giving the repo a ⭐!
+---
 
-Happy sliding! 🧩
+## ⭐ Show Your Support
+
+If you found this project helpful or interesting, please consider giving it a ⭐!
+Happy puzzling!
+---
